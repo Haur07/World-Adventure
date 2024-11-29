@@ -3,8 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class DoorInteraction : MonoBehaviour
 {
+    [SerializeField] Animator textInteraction;
     public GameObject textSprite;
     private bool isNearDoor = false;
+    private PlayerBehavior player;
+
+    private void Awake()
+    {
+        player = FindAnyObjectByType<PlayerBehavior>();
+    }
 
     private void Start()
     {
@@ -15,7 +22,13 @@ public class DoorInteraction : MonoBehaviour
     {
         if (isNearDoor && Input.GetKeyDown(KeyCode.W))
         {
-            SceneManager.LoadScene("Scenes/Level1");
+            AudioManager.instance.interaction();
+            LevelLoader.instance.startGame();
+
+            if (player != null)
+            {
+                player.SetCanMove(false);
+            }
         }
     }
 
@@ -23,6 +36,7 @@ public class DoorInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            textInteraction.SetTrigger("text-visible");
             isNearDoor = true;
             textSprite.gameObject.SetActive(true);
         }
@@ -32,6 +46,7 @@ public class DoorInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            textInteraction.SetTrigger("text-invisible");
             isNearDoor = false;
             textSprite.gameObject.SetActive(false);
         }

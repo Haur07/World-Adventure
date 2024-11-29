@@ -1,19 +1,18 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    [SerializeField] private AudioClip gameTheme;
-    private AudioSource audioSource;
     private float speed;
     private Rigidbody2D body;
     private Animator animate;
     private bool onGround;
+    private bool canMove;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -21,17 +20,15 @@ public class PlayerBehavior : MonoBehaviour
         speed = 5f;
         body.gravityScale = 1f;
         body.freezeRotation = true;
-
-        // Testando audioSource. Futuramente irá para um script diferente.
-        if (audioSource != null && gameTheme != null)
-        {
-            audioSource.clip = gameTheme;   
-            audioSource.Play();
-        }
     }
 
     private void Update()
     {
+        if (!canMove)
+        {
+            return;
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
@@ -55,6 +52,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Jump()
     {
+        AudioManager.instance.jumpingSound();
         body.velocity = new Vector2(body.velocity.x, speed);
         animate.SetTrigger("jump");
         onGround = false;
@@ -75,5 +73,10 @@ public class PlayerBehavior : MonoBehaviour
         {
             transform.position = new Vector2(7.4f, transform.position.y);
         }
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
     }
 }
