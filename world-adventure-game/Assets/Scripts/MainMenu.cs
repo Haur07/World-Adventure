@@ -21,6 +21,6 @@ public class MainMenu : MonoBehaviour
     }
     public void startGame()
     {
-        SceneManager.LoadSceneAsync("Levels/Level1");
+        SceneManager.LoadSceneAsync("Scenes/Lobby");
     }
 }
