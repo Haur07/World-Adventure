@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6a0b07d09e18a5d43a3ad86ff94d5ae750e8772df004bc1aee920191c2b3d8e2
-size 582
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+    [SerializeField] private AudioClip gameTheme;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        if (audioSource != null && gameTheme != null)
+        {
+            audioSource.clip = gameTheme;
+            audioSource.Play();
+        }
+    }
+    public void startGame()
+    {
+        SceneManager.LoadSceneAsync("Levels/Level1");
+    }
+}
