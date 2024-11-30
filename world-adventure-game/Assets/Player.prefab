@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2993702952034661743}
   - component: {fileID: 2939611610718126482}
   - component: {fileID: 2102174050048526830}
+  - component: {fileID: 7487120075478949761}
   - component: {fileID: 5861767541012434541}
   - component: {fileID: 8882637635969786337}
-  - component: {fileID: 4092521287572486783}
   - component: {fileID: 6759928918002947195}
   - component: {fileID: 7793633081337232518}
   m_Layer: 0
@@ -102,7 +102,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28654621b4d6c2f4daf8a59eb084dbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTheme: {fileID: 8300000, guid: f1f2f9528180453479d453d3c524f7ab, type: 3}
+--- !u!114 &7487120075478949761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337616374606240519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5187fb42e42e6b249826b8507acdfa19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!61 &5861767541012434541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,19 +187,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4092521287572486783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337616374606240519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28654621b4d6c2f4daf8a59eb084dbbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameTheme: {fileID: 8300000, guid: a544933a34b42884884b8892a7198aba, type: 3}
 --- !u!95 &6759928918002947195
 Animator:
   serializedVersion: 5
