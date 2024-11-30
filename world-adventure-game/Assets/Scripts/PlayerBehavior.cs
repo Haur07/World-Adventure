@@ -7,11 +7,13 @@ public class PlayerBehavior : MonoBehaviour
     private Animator animate;
     private bool onGround;
     private bool canMove;
+    private UIManager uiManager;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 
     private void Start()
@@ -43,6 +45,15 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && onGround)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !uiManager.getIsPaused())
+        {
+            uiManager.Paused();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && uiManager.getIsPaused())
+        {
+            uiManager.Unpause();
         }
 
         animate.SetBool("run", horizontalInput != 0);

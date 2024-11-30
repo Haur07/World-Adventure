@@ -43,6 +43,7 @@ public class Health : MonoBehaviour
         {
             AudioManager.instance.takeDamageSound();
             animate.SetTrigger("hurt");
+            player.SetCanMove(false);
             StartCoroutine(BecomeInvincible());
         }
         else
@@ -59,6 +60,15 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void InstantKill()
+    {
+        currentHealth = 0;
+        AudioManager.instance.stopSound();
+        player.SetCanMove(false);
+        dead = true;
+        StartCoroutine(InstantGameOverScreen());
+    }
+
     public void SetCurrentHealth(float value)
     {
         currentHealth = value;
@@ -69,9 +79,11 @@ public class Health : MonoBehaviour
         return currentHealth;
     }
 
-    private IEnumerator BecomeInvincible()
+    public IEnumerator BecomeInvincible()
     {
         isInvincible = true;
+        yield return new WaitForSeconds(0.6f);
+        player.SetCanMove(true);
         for (int i = 0; i < flashesNumber; i++) {
             sprite.color = new Color(0.7f, 0.7f, 0.7f, 0.3f);
             yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
@@ -84,6 +96,13 @@ public class Health : MonoBehaviour
     private IEnumerator GameOverScreen()
     {
         yield return new WaitForSeconds(0.65f);
+        audioSource.PlayOneShot(gameOverSound);
+        yield return new WaitForSeconds(3);
+        uiManager.GameOver();
+    }
+
+    private IEnumerator InstantGameOverScreen()
+    {
         audioSource.PlayOneShot(gameOverSound);
         yield return new WaitForSeconds(3);
         uiManager.GameOver();

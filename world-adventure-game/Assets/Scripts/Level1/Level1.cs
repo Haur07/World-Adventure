@@ -7,7 +7,7 @@ public class Level1 : MonoBehaviour
 
     private void Awake()
     {
-        player = FindAnyObjectByType<PlayerBehavior>();
+        player = FindFirstObjectByType<PlayerBehavior>();
     }
     private void Start()
     {
@@ -15,7 +15,7 @@ public class Level1 : MonoBehaviour
 
         if (player != null )
         {
-            StartCoroutine(FreezePlayer(player, 4.5f));
+            StartCoroutine(FreezePlayer(player, 5.5f));
         }
     }
 

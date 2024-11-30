@@ -7,6 +7,8 @@ public class LevelLoader : MonoBehaviour
     public static LevelLoader instance;
 
     [SerializeField] private Animator transition;
+    public UIManager uiManager;
+    public Health playerHealth;
 
     private void Awake()
     {
@@ -17,6 +19,9 @@ public class LevelLoader : MonoBehaviour
         }
 
         instance = this;
+
+        uiManager = FindFirstObjectByType<UIManager>();
+        playerHealth = FindAnyObjectByType<Health>();
     }
 
     public void startGame()
@@ -24,16 +29,31 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void restartGame()
+    {
+        uiManager.setPausedScreen(false);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(playerHealth.BecomeInvincible());
+        Time.timeScale = 1;
+    }
+
     public void mainMenu()
     {
-        AudioManager.instance.interaction();
-        SceneManager.LoadSceneAsync(0);
+        if (uiManager.getGameOverScreen())
+        {
+            uiManager.setGameOverScreen(false);
+        }
+
+        uiManager.setPausedScreen(false);
+        StartCoroutine(LoadLevel(0));   
+        StartCoroutine(playerHealth.BecomeInvincible());
+        Time.timeScale = 1;
     }
 
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("start");
         yield return new WaitForSeconds(2);
-        SceneManager.LoadSceneAsync(levelIndex);
+        SceneManager.LoadScene(levelIndex);
     }
 }
