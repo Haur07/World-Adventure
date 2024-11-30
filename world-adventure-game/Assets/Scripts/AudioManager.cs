@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -24,6 +24,14 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    // Teste. Futuramente a estrutura e lógica serão otimizadas.
+    public void stopSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+    }
     public void interaction()
     {
         if (audioSource != null && interactionSound != null)

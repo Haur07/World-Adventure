@@ -1,5 +1,4 @@
-using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -78,5 +77,9 @@ public class PlayerBehavior : MonoBehaviour
     public void SetCanMove(bool value)
     {
         canMove = value;
+        if (!canMove)
+        {
+            body.velocity = Vector2.zero;
+        }
     }
 }

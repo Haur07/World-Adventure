@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -12,6 +12,9 @@ public class Health : MonoBehaviour
     private float framesDuration;
     private int flashesNumber;
     private SpriteRenderer sprite;
+    private UIManager uiManager;
+    [SerializeField] private AudioClip gameOverSound;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -23,6 +26,8 @@ public class Health : MonoBehaviour
         animate = GetComponent<Animator>();
         player = GetComponent<PlayerBehavior>();
         sprite = GetComponent<SpriteRenderer>();
+        uiManager = FindFirstObjectByType<UIManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damage)
@@ -44,10 +49,12 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
+                AudioManager.instance.stopSound();
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
                 player.SetCanMove(false);
                 dead = true;
+                StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
             }
         }
     }
@@ -72,5 +79,13 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
         }
         isInvincible = false;
+    }
+
+    private IEnumerator GameOverScreen()
+    {
+        yield return new WaitForSeconds(0.65f);
+        audioSource.PlayOneShot(gameOverSound);
+        yield return new WaitForSeconds(3);
+        uiManager.GameOver();
     }
 }

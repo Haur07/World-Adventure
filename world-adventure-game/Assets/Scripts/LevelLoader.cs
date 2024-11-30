@@ -24,10 +24,16 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void mainMenu()
+    {
+        AudioManager.instance.interaction();
+        SceneManager.LoadSceneAsync(0);
+    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("start");
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadSceneAsync(levelIndex);
     }
 }
