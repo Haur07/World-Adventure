@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip menuSong;
     [SerializeField] private AudioClip lobbySong;
     [SerializeField] private AudioClip level1Song;
+    [SerializeField] private AudioClip level2Song;
     private AudioSource audioSource;
 
     private void Awake()
@@ -74,9 +75,17 @@ public class AudioManager : MonoBehaviour
 
     public void level1Theme()
     {
-        if (audioSource != null && level1Song  != null)
+        if (audioSource != null && level1Song != null)
         {
             audioSource.PlayOneShot(level1Song);
+        }
+    }
+
+    public void level2Theme()
+    {
+        if (audioSource != null && level2Song != null)
+        {
+            audioSource.PlayOneShot(level2Song);
         }
     }
 }
