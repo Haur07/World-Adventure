@@ -8,12 +8,14 @@ public class PlayerBehavior : MonoBehaviour
     private bool onGround;
     private bool canMove;
     private UIManager uiManager;
+    private CollectiblesManager collectiblesManager;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
         uiManager = FindFirstObjectByType<UIManager>();
+        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
     }
 
     private void Start()
@@ -91,6 +93,15 @@ public class PlayerBehavior : MonoBehaviour
         if (!canMove)
         {
             body.velocity = Vector2.zero;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Cherry"))
+        {
+            Destroy(collision.gameObject);
+            collectiblesManager.SetCherryPoints(5);
         }
     }
 }
