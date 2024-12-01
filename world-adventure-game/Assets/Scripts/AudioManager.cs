@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip menuSong;
     [SerializeField] private AudioClip lobbySong;
+    [SerializeField] private AudioClip victorySong;
     [SerializeField] private AudioClip level1Song;
     [SerializeField] private AudioClip level2Song;
     private AudioSource audioSource;
@@ -38,6 +39,14 @@ public class AudioManager : MonoBehaviour
         if (audioSource != null && interactionSound != null)
         {
             audioSource.PlayOneShot(interactionSound);
+        }
+    }
+
+    public void victoryTheme()
+    {
+        if (audioSource != null && victorySong != null)
+        {
+            audioSource.PlayOneShot(victorySong);
         }
     }
 

@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     private SpriteRenderer sprite;
     private UIManager uiManager;
     [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private GameObject victoryText;
     private AudioSource audioSource;
 
     private void Awake()
@@ -50,6 +51,7 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
+                victoryText.SetActive(false);
                 AudioManager.instance.stopSound();
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
@@ -62,6 +64,7 @@ public class Health : MonoBehaviour
 
     public void InstantKill()
     {
+        victoryText.SetActive(false);
         currentHealth = 0;
         AudioManager.instance.stopSound();
         player.SetCanMove(false);

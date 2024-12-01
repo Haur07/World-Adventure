@@ -48,8 +48,14 @@ TagManager:
   - name: Tree
     uniqueID: 3386263017
     locked: 0
+  - name: Background
+    uniqueID: 2047422195
+    locked: 0
   - name: House
     uniqueID: 3863046879
+    locked: 0
+  - name: Foreground
+    uniqueID: 2300421745
     locked: 0
   - name: Player
     uniqueID: 2129556085
