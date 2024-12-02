@@ -48,6 +48,7 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: 330083b5234085745a51afa845159bc7, type: 3}
   jumpSound: {fileID: 8300000, guid: 8c4de95a8ec5ad24ab07df0bff449503, type: 3}
   damageSound: {fileID: 8300000, guid: 7997e236fb746644fad32dda7156e7ec, type: 3}
+  collectSound: {fileID: 8300000, guid: 155af7ecefb959a42b09946a34e30323, type: 3}
   menuSong: {fileID: 8300000, guid: 78f75a26898b0b644912aa0ceb7c93d0, type: 3}
   lobbySong: {fileID: 8300000, guid: f3e68747878a91f43b569bdd189415b3, type: 3}
   victorySong: {fileID: 8300000, guid: cae411abb4b155f4bb6affee35e8a879, type: 3}

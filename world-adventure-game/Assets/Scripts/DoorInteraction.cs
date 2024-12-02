@@ -6,6 +6,7 @@ public class DoorInteraction : MonoBehaviour
     [SerializeField] Animator textInteraction;
     public GameObject textSprite;
     private bool isNearDoor = false;
+    private bool doorInteracted = false;
     private PlayerBehavior player;
     private CollectiblesManager collectiblesManager;
 
@@ -22,7 +23,7 @@ public class DoorInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (isNearDoor && Input.GetKeyDown(KeyCode.W))
+        if (isNearDoor && Input.GetKeyDown(KeyCode.W) && !doorInteracted)
         {
             if (player != null)
             {
@@ -38,6 +39,7 @@ public class DoorInteraction : MonoBehaviour
                 collectiblesManager.SaveTotalScore();
             }
 
+            doorInteracted = true;
             AudioManager.instance.interaction();
             LevelLoader.instance.startGame();
         }

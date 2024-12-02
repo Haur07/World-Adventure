@@ -100,6 +100,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Cherry"))
         {
+            AudioManager.instance.collectItemSound();
             Destroy(collision.gameObject);
             collectiblesManager.SetCherryPoints(5);
         }

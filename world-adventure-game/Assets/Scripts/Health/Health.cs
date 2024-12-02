@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class Health : MonoBehaviour
     private UIManager uiManager;
     private CollectiblesManager collectiblesManager;
     [SerializeField] private AudioClip gameOverSound;
-    [SerializeField] private GameObject victoryText;
     private AudioSource audioSource;
 
     private void Awake()
@@ -44,13 +44,16 @@ public class Health : MonoBehaviour
         
         if (currentHealth > 0)
         {
-            if (damage < 1)
+            if (SceneManager.GetActiveScene().buildIndex != 1)
             {
-                collectiblesManager.SetCherryPoints(-2);
-            }
-            else
-            {
-                collectiblesManager.SetCherryPoints((int)damage * 4 * -1);
+                if (damage < 1)
+                {
+                    collectiblesManager.SetCherryPoints(-2);
+                }
+                else
+                {
+                    collectiblesManager.SetCherryPoints((int)damage * 4 * -1);
+                }
             }
 
             AudioManager.instance.takeDamageSound();
@@ -62,7 +65,6 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
-                victoryText.SetActive(false);
                 AudioManager.instance.stopSound();
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
@@ -76,7 +78,6 @@ public class Health : MonoBehaviour
 
     public void InstantKill()
     {
-        victoryText.SetActive(false);
         currentHealth = 0;
         AudioManager.instance.stopSound();
         player.SetCanMove(false);

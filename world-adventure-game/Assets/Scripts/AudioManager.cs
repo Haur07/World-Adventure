@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip interactionSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip collectSound;
     [SerializeField] private AudioClip menuSong;
     [SerializeField] private AudioClip lobbySong;
     [SerializeField] private AudioClip victorySong;
@@ -63,6 +64,14 @@ public class AudioManager : MonoBehaviour
         if (audioSource != null && damageSound != null)
         {
             audioSource.PlayOneShot(damageSound);
+        }
+    }
+
+    public void collectItemSound()
+    {
+        if (audioSource != null && collectSound != null)
+        {
+            audioSource.PlayOneShot(collectSound);
         }
     }
 

@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour
     public static LevelLoader instance;
 
     [SerializeField] private Animator transition;
+    private CollectiblesManager collectiblesManager;
     public UIManager uiManager;
     public Health playerHealth;
 
@@ -22,6 +23,7 @@ public class LevelLoader : MonoBehaviour
 
         uiManager = FindFirstObjectByType<UIManager>();
         playerHealth = FindAnyObjectByType<Health>();
+        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
     }
 
     public void startGame()
@@ -44,6 +46,7 @@ public class LevelLoader : MonoBehaviour
             uiManager.setGameOverScreen(false);
         }
 
+        PlayerPrefs.SetInt("CurrentScore" + collectiblesManager.GetSelectedPlayer(), 0);
         uiManager.setPausedScreen(false);
         StartCoroutine(LoadLevel(0));   
         StartCoroutine(playerHealth.BecomeInvincible());
@@ -54,6 +57,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (levelIndex > 3)
         {
+            PlayerPrefs.SetInt("CurrentScore" + collectiblesManager.GetSelectedPlayer(), 0);
             transition.SetTrigger("start");
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
