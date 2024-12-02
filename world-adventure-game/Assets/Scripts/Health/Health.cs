@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     private int flashesNumber;
     private SpriteRenderer sprite;
     private UIManager uiManager;
+    private CollectiblesManager collectiblesManager;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private GameObject victoryText;
     private AudioSource audioSource;
@@ -28,6 +29,7 @@ public class Health : MonoBehaviour
         player = GetComponent<PlayerBehavior>();
         sprite = GetComponent<SpriteRenderer>();
         uiManager = FindFirstObjectByType<UIManager>();
+        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -42,6 +44,15 @@ public class Health : MonoBehaviour
         
         if (currentHealth > 0)
         {
+            if (damage < 1)
+            {
+                collectiblesManager.SetCherryPoints(-2);
+            }
+            else
+            {
+                collectiblesManager.SetCherryPoints((int)damage * 4 * -1);
+            }
+
             AudioManager.instance.takeDamageSound();
             animate.SetTrigger("hurt");
             player.SetCanMove(false);
@@ -56,6 +67,7 @@ public class Health : MonoBehaviour
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
                 player.SetCanMove(false);
+                collectiblesManager.SetCherryPoints(-100);
                 dead = true;
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
             }
@@ -68,6 +80,7 @@ public class Health : MonoBehaviour
         currentHealth = 0;
         AudioManager.instance.stopSound();
         player.SetCanMove(false);
+        collectiblesManager.SetCherryPoints(-100);
         dead = true;
         StartCoroutine(InstantGameOverScreen());
     }

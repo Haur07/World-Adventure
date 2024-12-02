@@ -52,6 +52,13 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        if (levelIndex > 3)
+        {
+            transition.SetTrigger("start");
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene(0);
+        }
+
         transition.SetTrigger("start");
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(levelIndex);

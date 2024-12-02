@@ -7,10 +7,12 @@ public class DoorInteraction : MonoBehaviour
     public GameObject textSprite;
     private bool isNearDoor = false;
     private PlayerBehavior player;
+    private CollectiblesManager collectiblesManager;
 
     private void Awake()
     {
         player = FindAnyObjectByType<PlayerBehavior>();
+        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
     }
 
     private void Start()
@@ -22,13 +24,22 @@ public class DoorInteraction : MonoBehaviour
     {
         if (isNearDoor && Input.GetKeyDown(KeyCode.W))
         {
-            AudioManager.instance.interaction();
-            LevelLoader.instance.startGame();
-
             if (player != null)
             {
                 player.SetCanMove(false);
             }
+
+            if (collectiblesManager != null)
+            {
+                int selectedPlayer = collectiblesManager.GetSelectedPlayer();
+                int currentScore = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
+                int score = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
+                PlayerPrefs.SetInt("Score" + selectedPlayer, currentScore + score);
+                collectiblesManager.SaveTotalScore();
+            }
+
+            AudioManager.instance.interaction();
+            LevelLoader.instance.startGame();
         }
     }
 
