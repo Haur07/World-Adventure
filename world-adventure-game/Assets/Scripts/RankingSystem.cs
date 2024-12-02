@@ -29,7 +29,15 @@ public class RankingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScores();
+            UpdateScores();
         }
+    }
+
+    public void UpdateScores()
+    {
+        Player1Score();
+        Player2Score();
+        Player3Score();
     }
 
     public void ShowRankScreen()

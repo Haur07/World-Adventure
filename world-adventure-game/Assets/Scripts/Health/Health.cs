@@ -71,6 +71,7 @@ public class Health : MonoBehaviour
                 player.SetCanMove(false);
                 collectiblesManager.SetCherryPoints(-100);
                 dead = true;
+                PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
             }
         }
@@ -83,6 +84,7 @@ public class Health : MonoBehaviour
         player.SetCanMove(false);
         collectiblesManager.SetCherryPoints(-100);
         dead = true;
+        PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
         StartCoroutine(InstantGameOverScreen());
     }
 
