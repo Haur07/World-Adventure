@@ -9,11 +9,17 @@ public class DoorInteraction : MonoBehaviour
     private bool doorInteracted = false;
     private PlayerBehavior player;
     private CollectiblesManager collectiblesManager;
+    private int selectedPlayer;
 
     private void Awake()
     {
         player = FindAnyObjectByType<PlayerBehavior>();
         collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
+
+        if (collectiblesManager != null )
+        {
+            selectedPlayer = collectiblesManager.GetSelectedPlayer();
+        }
     }
 
     private void Start()
@@ -32,10 +38,13 @@ public class DoorInteraction : MonoBehaviour
 
             if (collectiblesManager != null)
             {
-                int selectedPlayer = collectiblesManager.GetSelectedPlayer();
-                int currentScore = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
-                int score = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
-                PlayerPrefs.SetInt("Score" + selectedPlayer, currentScore + score);
+                // Debugging
+
+                // int toBeSavedScore = PlayerPrefs.GetInt("ToBeSavedScore" + selectedPlayer, 0);
+                // int score = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
+                // PlayerPrefs.SetInt("Score" + selectedPlayer, toBeSavedScore + score);
+
+                // collectiblesManager.ToBeSavedScore();
                 collectiblesManager.SaveTotalScore();
             }
 

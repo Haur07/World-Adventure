@@ -26,6 +26,22 @@ public class LevelLoader : MonoBehaviour
         collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
     }
 
+    public void resetPoints()
+    {
+        PlayerPrefs.SetInt("RemoveScore", 0);
+        PlayerPrefs.SetInt("CurrentScore" + 1, 0);
+        PlayerPrefs.SetInt("CurrentScore" + 2, 0);
+        PlayerPrefs.SetInt("CurrentScore" + 3, 0);
+    }
+
+    public void resetCurrentPoints()
+    {
+        int selectedPlayer = collectiblesManager.GetSelectedPlayer();
+        int currentPoints = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
+        int removePoints = Mathf.Max(0, collectiblesManager.GetRemoveCherryPoints());
+        PlayerPrefs.SetInt("CurrentScore" + selectedPlayer,  currentPoints - removePoints);
+    }
+
     public void startGame()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));

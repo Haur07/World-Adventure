@@ -149,7 +149,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &2477691023982550347
 MonoBehaviour:
@@ -258,3 +258,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 7654013783302259186}
+  uiManager: {fileID: 0}
+  playerHealth: {fileID: 0}

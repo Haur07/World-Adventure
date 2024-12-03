@@ -69,7 +69,7 @@ public class Health : MonoBehaviour
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
                 player.SetCanMove(false);
-                collectiblesManager.SetCherryPoints(-100);
+                collectiblesManager.SetCherryPoints(-1000);
                 dead = true;
                 PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
@@ -82,7 +82,7 @@ public class Health : MonoBehaviour
         currentHealth = 0;
         AudioManager.instance.stopSound();
         player.SetCanMove(false);
-        collectiblesManager.SetCherryPoints(-100);
+        collectiblesManager.SetCherryPoints(-1000);
         dead = true;
         PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
         StartCoroutine(InstantGameOverScreen());
@@ -91,6 +91,11 @@ public class Health : MonoBehaviour
     public void SetCurrentHealth(float value)
     {
         currentHealth = value;
+    }
+
+    public void SetInvincible()
+    {
+        StartCoroutine(AlwaysInvincible());
     }
 
     public float GetCurrentHealth()
@@ -110,6 +115,18 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
         }
         isInvincible = false;
+    }
+
+    public IEnumerator AlwaysInvincible()
+    {
+        while (true)
+        {
+            isInvincible = true;
+            sprite.color = new Color(0.7f, 0.7f, 0.7f, 0.3f);
+            yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
+            sprite.color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
+        }
     }
 
     private IEnumerator GameOverScreen()

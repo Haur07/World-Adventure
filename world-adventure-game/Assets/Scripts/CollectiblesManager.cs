@@ -1,23 +1,44 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CollectiblesManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
     private int cherryPoints;
+    private int removeCherryPoints;
+    private int saveCherryPoints;
     private int selectedPlayer;
+    private int index;
+    private int totalScore;
+    private int toBeSavedScore;
 
     private void Awake()
     {
+        index = SceneManager.GetActiveScene().buildIndex;
         selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
+        cherryPoints = 0;
+        removeCherryPoints = 0;
+        PlayerPrefs.SetInt("RemoveScore", PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0));
         UpdateScoreDisplay();
     }
 
-    public void SetCherryPoints(int points)
+    private void Update()
     {
-        cherryPoints = Mathf.Max(0, cherryPoints + points);
-        SaveScore(cherryPoints);
+        totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
+        toBeSavedScore = cherryPoints - PlayerPrefs.GetInt("RemoveScore", 0);
+        removeCherryPoints = toBeSavedScore;
+
+        // Debugging
+        Debug.Log($"Player: {GetSelectedPlayer()} | Level Index: {index} | Total Score: {totalScore} | To Be Saved Score: {toBeSavedScore} | Cherry Points: {cherryPoints}.");
+    }
+
+    public void SetCherryPoints(int score)
+    {
+        cherryPoints = Mathf.Max(0, cherryPoints + score);
+        SaveCurrentScore(cherryPoints);
         UpdateScoreDisplay();
     }
 
@@ -40,19 +61,23 @@ public class CollectiblesManager : MonoBehaviour
         return formatted; 
     }
 
-    private void SaveScore(int score)
+    private void SaveCurrentScore(int score)
     {
         PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, score);
     }
 
     public void SaveTotalScore()
     {
-        int totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
-        PlayerPrefs.SetInt("Score" + selectedPlayer, totalScore);
+        PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Min(9999, totalScore + toBeSavedScore));
     }
 
     public int GetSelectedPlayer()
     {
         return selectedPlayer;
+    }
+
+    public int GetRemoveCherryPoints()
+    {
+        return removeCherryPoints;
     }
 }
