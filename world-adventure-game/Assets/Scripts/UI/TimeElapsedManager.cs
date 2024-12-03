@@ -3,11 +3,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PostGameScores : MonoBehaviour
+public class TimeElapsedManager : MonoBehaviour
 {
     [SerializeField] TMP_Text timeElapsed;
     private int timeElapsedText;
     private bool isGameRunning;
+
+    private void Awake()
+    {
+        timeElapsed.gameObject.SetActive(false);
+    }
 
     private void Start()
     {
@@ -15,6 +20,7 @@ public class PostGameScores : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex > 1)
         {
+            timeElapsed.gameObject.SetActive(true);
             StartCoroutine(TimeRoutine());
         }
     }
@@ -45,5 +51,10 @@ public class PostGameScores : MonoBehaviour
     public void SetIsGameRunning(bool value)
     {
         isGameRunning = value;
+    }
+
+    public int GetTimeElapsed()
+    {
+        return timeElapsedText;
     }
 }

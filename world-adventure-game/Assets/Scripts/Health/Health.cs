@@ -72,6 +72,7 @@ public class Health : MonoBehaviour
                 collectiblesManager.SetCherryPoints(-1000);
                 dead = true;
                 PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
+                PlayerPrefs.Save();
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
             }
         }
@@ -85,6 +86,7 @@ public class Health : MonoBehaviour
         collectiblesManager.SetCherryPoints(-1000);
         dead = true;
         PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
+        PlayerPrefs.Save();
         StartCoroutine(InstantGameOverScreen());
     }
 
@@ -122,7 +124,7 @@ public class Health : MonoBehaviour
         while (true)
         {
             isInvincible = true;
-            sprite.color = new Color(0.7f, 0.7f, 0.7f, 0.3f);
+            sprite.color = new Color(1, 1, 0.3f, 0.8f);
             yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));
             sprite.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(framesDuration / (flashesNumber * 2));

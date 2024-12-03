@@ -55,8 +55,11 @@ public class RankingSystem : MonoBehaviour
     public void ResetScores()
     {
         PlayerPrefs.SetInt("Score" + 1, 0);
+        PlayerPrefs.Save();
         PlayerPrefs.SetInt("Score" + 2, 0);
+        PlayerPrefs.Save();
         PlayerPrefs.SetInt("Score" + 3, 0);
+        PlayerPrefs.Save();
     }
 
     private void Player1Score()

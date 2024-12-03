@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DoorInteraction : MonoBehaviour
 {
+    [SerializeField] GameObject postGameScreenManager;
     [SerializeField] Animator textInteraction;
     public GameObject textSprite;
     private bool isNearDoor = false;
@@ -38,19 +39,21 @@ public class DoorInteraction : MonoBehaviour
 
             if (collectiblesManager != null)
             {
-                // Debugging
-
-                // int toBeSavedScore = PlayerPrefs.GetInt("ToBeSavedScore" + selectedPlayer, 0);
-                // int score = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
-                // PlayerPrefs.SetInt("Score" + selectedPlayer, toBeSavedScore + score);
-
-                // collectiblesManager.ToBeSavedScore();
                 collectiblesManager.SaveTotalScore();
             }
 
             doorInteracted = true;
             AudioManager.instance.interaction();
-            LevelLoader.instance.startGame();
+
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                LevelLoader.instance.startGame();
+            }
+            else 
+            {
+                postGameScreenManager.SetActive(true);
+                postGameScreenManager.GetComponent<PostGameScreenManager>().ShowPostGameScreen();
+            }
         }
     }
 

@@ -4,14 +4,11 @@ using UnityEngine;
 public class Level2 : MonoBehaviour
 {
     private PlayerBehavior player;
-    private CollectiblesManager collectiblesManager;
     private int score;
 
     private void Awake()
     {
         player = FindFirstObjectByType<PlayerBehavior>();
-        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
-        score = PlayerPrefs.GetInt("CurrentScore" + collectiblesManager.GetSelectedPlayer(), 0);
     }
     private void Start()
     {
@@ -20,11 +17,6 @@ public class Level2 : MonoBehaviour
         if (player != null)
         {
             StartCoroutine(FreezePlayer(player, 5.5f));
-        }
-
-        if (collectiblesManager != null)
-        {
-            collectiblesManager.SetCherryPoints(score);
         }
     }
 

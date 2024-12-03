@@ -26,8 +26,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         audioSource = GetComponent<AudioSource>();
     }
-
-    // Teste. Futuramente a estrutura e lógica serão otimizadas.
     public void stopSound()
     {
         if (audioSource != null)

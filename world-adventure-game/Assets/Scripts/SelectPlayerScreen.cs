@@ -20,16 +20,19 @@ public class SelectPlayerScreen : MonoBehaviour
     public void Player1()
     {
         PlayerPrefs.SetInt("SelectedPlayer", 1);
+        PlayerPrefs.Save();
     }
 
     public void Player2()
     {
         PlayerPrefs.SetInt("SelectedPlayer", 2);
+        PlayerPrefs.Save();
     }
 
     public void Player3()
     {
         PlayerPrefs.SetInt("SelectedPlayer", 3);
+        PlayerPrefs.Save();
     }
 
     public void ShowSelectPlayerScreen()

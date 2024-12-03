@@ -19,9 +19,11 @@ public class CollectiblesManager : MonoBehaviour
     {
         index = SceneManager.GetActiveScene().buildIndex;
         selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
-        cherryPoints = 0;
+        totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
         removeCherryPoints = 0;
+        cherryPoints = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
         PlayerPrefs.SetInt("RemoveScore", PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0));
+        PlayerPrefs.Save();
         UpdateScoreDisplay();
     }
 
@@ -32,7 +34,7 @@ public class CollectiblesManager : MonoBehaviour
         removeCherryPoints = toBeSavedScore;
 
         // Debugging
-        Debug.Log($"Player: {GetSelectedPlayer()} | Level Index: {index} | Total Score: {totalScore} | To Be Saved Score: {toBeSavedScore} | Cherry Points: {cherryPoints}.");
+        // Debug.Log($"Player: {GetSelectedPlayer()} | Level Index: {index} | Total Score: {totalScore} | To Be Saved Score: {toBeSavedScore} | Cherry Points: {cherryPoints}");
     }
 
     public void SetCherryPoints(int score)
@@ -64,11 +66,13 @@ public class CollectiblesManager : MonoBehaviour
     private void SaveCurrentScore(int score)
     {
         PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, score);
+        PlayerPrefs.Save();
     }
 
     public void SaveTotalScore()
     {
         PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Min(9999, totalScore + toBeSavedScore));
+        PlayerPrefs.Save();
     }
 
     public int GetSelectedPlayer()

@@ -7,7 +7,7 @@ public class VictoryLine : MonoBehaviour
     private PlayerBehavior player;
     private Health health;
     private CollectiblesManager collectiblesManager;
-    private PostGameScores postGameScores;
+    private TimeElapsedManager timeElapsedManager;
     [SerializeField] private GameObject doorInteraction;
     [SerializeField] private GameObject interactText;
     [SerializeField] private GameObject blockerIndicator;
@@ -19,7 +19,7 @@ public class VictoryLine : MonoBehaviour
         player = FindAnyObjectByType<PlayerBehavior>();
         health = FindAnyObjectByType<Health>();
         collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
-        postGameScores = FindAnyObjectByType<PostGameScores>();
+        timeElapsedManager = FindAnyObjectByType<TimeElapsedManager>();
         doorInteraction.SetActive(false);
         interactText.SetActive(false);
     }
@@ -32,7 +32,7 @@ public class VictoryLine : MonoBehaviour
             health.SetInvincible();
             // collectiblesManager.SetToBeSavedScore();
             blockerIndicator.SetActive(true);
-            postGameScores.SetIsGameRunning(false);
+            timeElapsedManager.SetIsGameRunning(false);
             AudioManager.instance.stopSound();
             AudioManager.instance.victoryTheme();
             StartCoroutine(activateDoorInteraction());
