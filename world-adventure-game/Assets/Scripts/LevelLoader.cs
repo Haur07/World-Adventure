@@ -67,8 +67,12 @@ public class LevelLoader : MonoBehaviour
             uiManager.setGameOverScreen(false);
         }
 
-        PlayerPrefs.SetInt("CurrentScore" + collectiblesManager.GetSelectedPlayer(), 0);
-        PlayerPrefs.Save();
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            PlayerPrefs.SetInt("CurrentScore" + collectiblesManager.GetSelectedPlayer(), 0);
+            PlayerPrefs.Save();
+        }
+        
         uiManager.setPausedScreen(false);
         StartCoroutine(LoadLevel(0));   
         StartCoroutine(playerHealth.BecomeInvincible());

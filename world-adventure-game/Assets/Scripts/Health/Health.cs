@@ -69,10 +69,15 @@ public class Health : MonoBehaviour
                 AudioManager.instance.takeDamageSound();
                 animate.SetTrigger("die");
                 player.SetCanMove(false);
-                collectiblesManager.SetCherryPoints(-1000);
                 dead = true;
-                PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
-                PlayerPrefs.Save();
+
+                if (SceneManager.GetActiveScene().buildIndex != 1)
+                {
+                    collectiblesManager.SetCherryPoints(-1000);
+                    PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
+                    PlayerPrefs.Save();
+                }
+                
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
             }
         }
@@ -83,10 +88,15 @@ public class Health : MonoBehaviour
         currentHealth = 0;
         AudioManager.instance.stopSound();
         player.SetCanMove(false);
-        collectiblesManager.SetCherryPoints(-1000);
         dead = true;
-        PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
-        PlayerPrefs.Save();
+
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            collectiblesManager.SetCherryPoints(-1000);
+            PlayerPrefs.SetInt("Score" + collectiblesManager.GetSelectedPlayer(), 0);
+            PlayerPrefs.Save();
+        }
+
         StartCoroutine(InstantGameOverScreen());
     }
 
