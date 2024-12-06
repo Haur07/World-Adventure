@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Thorn : MonoBehaviour
@@ -11,9 +12,29 @@ public class Thorn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Health>().TakeDamage(damage);
+            StartCoroutine(ApplyDamageOverTime());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    private IEnumerator ApplyDamageOverTime()
+    {
+        while (true)
+        {
+            if (!Health.Instance.GetIsInvincible())
+            {
+                Health.Instance.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
