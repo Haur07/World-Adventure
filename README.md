@@ -24,4 +24,4 @@ O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhe
 
 Caso queira jogar o game, basta baixar o projeto em uma pasta ZIP, extrair e, na pasta Game Adventure Exe, rodar o executável do jogo! As futuras atualizações e alguns ajustes serão aos poucos incrementados e atualizados aqui :)
 
-Versão atual do game: v1.0.1 BETA
+Versão atual do game: v1.1.0 BETA
