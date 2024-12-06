@@ -54,7 +54,7 @@ public class LevelLoader : MonoBehaviour
         if (Health.Instance.GetIsGameOver())
         {
             int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
-            CollectiblesManager.Instance.SaveTotalScore();
+            CollectiblesManager.Instance?.SaveTotalScore();
         }
 
         AudioManager.Instance.PlaySound("interaction");
