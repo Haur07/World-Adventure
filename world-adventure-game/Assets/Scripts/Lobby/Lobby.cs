@@ -3,27 +3,28 @@ using UnityEngine;
 
 public class Lobby : MonoBehaviour
 {
-    private PlayerBehavior player;
+    [SerializeField] private PlayerBehavior player;
 
     private void Awake()
     {
-        player = FindFirstObjectByType<PlayerBehavior>();
+        for (int index = 1; index < 4; index++)
+        {
+            PlayerPrefs.SetInt("CurrentScore" + index, 0);
+            PlayerPrefs.Save();
+        }
     }
 
     private void Start()
     {
-        AudioManager.instance.lobbyTheme();
+        AudioManager.Instance.PlaySound("lobby");
 
         if (player != null)
         {
-            StartCoroutine(FreezePlayer(player, 2.35f));
+            StartCoroutine(FreezePlayer.Instance.DisableMovement(player, 2.3f));
         }
-    }
-
-    private IEnumerator FreezePlayer(PlayerBehavior player, float duration)
-    {
-        player.SetCanMove(false);
-        yield return new WaitForSeconds(duration);
-        player.SetCanMove(true);
+        else
+        {
+            Debug.LogWarning("Player not found or it's null.");
+        }
     }
 }
