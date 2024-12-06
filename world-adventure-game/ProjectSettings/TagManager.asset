@@ -9,6 +9,8 @@ TagManager:
   - rightCollision
   - Enemy
   - Cherry
+  - Gem
+  - Heart
   layers:
   - Default
   - TransparentFX

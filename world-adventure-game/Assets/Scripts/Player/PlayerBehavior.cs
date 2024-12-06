@@ -93,7 +93,27 @@ public class PlayerBehavior : MonoBehaviour
         {
             AudioManager.Instance.PlaySound("collect");
             Destroy(collision.gameObject);
-            collectiblesManager.SetCherryPoints(5);
+            collectiblesManager.SetPoints(20);
+        }
+        else if (collision.gameObject.CompareTag("Gem"))
+        {
+            AudioManager.Instance.PlaySound("collect");
+            Destroy(collision.gameObject);
+            collectiblesManager.SetPoints(300);
+        }
+        else if (collision.gameObject.CompareTag("Heart"))
+        {
+            AudioManager.Instance.PlaySound("collect");
+            Destroy(collision.gameObject);
+
+            if (Health.Instance.GetCurrentHealth() != 3)
+            {
+                Health.Instance.HealPlayer(PlayerPrefs.GetFloat("HealPlayer", 1));
+            }
+            else
+            {
+                collectiblesManager.SetPoints(80);
+            }
         }
     }
 }

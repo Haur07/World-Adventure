@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PostGameScreenManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text pointsValue;
     [SerializeField] private TMP_Text timeValue;
+    [SerializeField] private TMP_Text pointsValueNoTime;
+    [SerializeField] private TMP_Text minusPointsValue;
+    [SerializeField] private TMP_Text pointsValue;
     [SerializeField] private Animator resultsAnimate;
     [SerializeField] private GameObject health;
     private CollectiblesManager collectiblesManager;
@@ -33,12 +35,17 @@ public class PostGameScreenManager : MonoBehaviour
 
     private void SetTextsValue()
     {
+        int scoreNoTime = PlayerPrefs.GetInt("CurrentScoreNoTime" + selectedPlayer, 0);
         int score = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
-        string formattedScore = FormatResult(score);
         string formattedTime = FormatResult(timeElapsedManager.GetTimeElapsed());
+        string formattedScoreNoTime = FormatResult(scoreNoTime);
+        string formattedMinusScore = FormatResult(timeElapsedManager.GetTimeElapsed() * 3);
+        string formattedScore = FormatResult(score);
 
-        pointsValue.text = formattedScore;
         timeValue.text = formattedTime;
+        pointsValueNoTime.text = formattedScoreNoTime;
+        minusPointsValue.text = formattedMinusScore;
+        pointsValue.text = formattedScore;
     }
 
     private string FormatResult(int value)

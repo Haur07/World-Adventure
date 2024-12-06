@@ -8,10 +8,10 @@ public class CollectiblesManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
 
     private int selectedPlayer;
-    private int cherryPoints;
-    private int saveCherryPoints;
+    private int points;
     private int toBeSavedScore;
     private int totalScore;
+    private int time;
 
     private void Awake()
     {
@@ -19,8 +19,9 @@ public class CollectiblesManager : MonoBehaviour
         {
             Instance = this;
             selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
-            cherryPoints = Mathf.Clamp(PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0), 0, 9999);
+            points = Mathf.Clamp(PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0), 0, 9999);
             totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
+            time = 0;
             PlayerPrefs.SetInt("RemoveScore", PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0));
             PlayerPrefs.Save();
             UpdateScoreDisplay();
@@ -33,10 +34,11 @@ public class CollectiblesManager : MonoBehaviour
 
     private void Update()
     {
+        time = TimeElapsedManager.Instance.GetTimeElapsed();
         totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
-        toBeSavedScore = cherryPoints - PlayerPrefs.GetInt("RemoveScore", 0);
+        toBeSavedScore = points - PlayerPrefs.GetInt("RemoveScore", 0);
 
-        Debug.Log($"Selected Player: {selectedPlayer} | Cherry Points: {cherryPoints} | To Be Saved Score {toBeSavedScore} | Total Score: {totalScore}");
+        Debug.Log($"Selected Player: {selectedPlayer} | Score: {points} | To Be Saved Score (-time x3) {toBeSavedScore - time * 3} | Total Score: {totalScore} | Time Elapsed (x3): {time * 3}");
     }
 
     public void ResetCurrentPoints()
@@ -47,16 +49,16 @@ public class CollectiblesManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void SetCherryPoints(int score)
+    public void SetPoints(int score)
     {
-        cherryPoints = Mathf.Clamp(cherryPoints + score, 0, 9999);
-        SaveCurrentScore(cherryPoints);
+        points = Mathf.Clamp(points + score, 0, 9999);
+        SaveCurrentScore(points);
         UpdateScoreDisplay();
     }
 
     private void UpdateScoreDisplay()
     {
-        string formattedScore = FormatScore(cherryPoints);
+        string formattedScore = FormatScore(points);
         scoreText.text = formattedScore;
     }
 
@@ -81,7 +83,7 @@ public class CollectiblesManager : MonoBehaviour
 
     public void SaveTotalScore()
     {
-        PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Min(9999, totalScore + toBeSavedScore));
+        PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Clamp(totalScore + (toBeSavedScore - time * 3), 0, 9999));
         PlayerPrefs.Save();
     }
 }

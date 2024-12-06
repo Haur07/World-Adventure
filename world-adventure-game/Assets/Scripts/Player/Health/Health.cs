@@ -51,6 +51,11 @@ public class Health : MonoBehaviour
         return isInvincible;
     }
 
+    public void HealPlayer(float healing)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + healing, 0, health);
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, health);
@@ -61,11 +66,11 @@ public class Health : MonoBehaviour
             {
                 if (damage < 1)
                 {
-                    CollectiblesManager.Instance.SetCherryPoints(-2);
+                    CollectiblesManager.Instance.SetPoints(-6);
                 }
                 else
                 {
-                    CollectiblesManager.Instance.SetCherryPoints((int)damage * 4 * -1);
+                    CollectiblesManager.Instance.SetPoints((int)damage * 12 * -1);
                 }
             }
 
@@ -78,6 +83,7 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
+                TimeElapsedManager.Instance.StopAllCoroutines();
                 AudioManager.Instance.StopSound();
                 AudioManager.Instance.PlaySound("damage");
                 animate.SetTrigger("die");
@@ -93,6 +99,7 @@ public class Health : MonoBehaviour
         if (!isInvincible)
         {
             currentHealth = 0;
+            TimeElapsedManager.Instance.StopAllCoroutines();
             AudioManager.Instance.StopSound();
             player.SetCanMove(false);
             dead = true;

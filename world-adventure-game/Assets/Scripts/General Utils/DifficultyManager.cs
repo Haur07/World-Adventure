@@ -24,6 +24,7 @@ public class DifficultyManager : MonoBehaviour
         AudioManager.Instance.PlaySound("interaction");
         PlayerPrefs.SetFloat("ThornDamage", 1f);
         PlayerPrefs.SetFloat("FrogDamage", 0.5f);
+        PlayerPrefs.SetFloat("HealPlayer", 1f);
         PlayerPrefs.Save();
 
         easyButton.sprite = easyButtonSprites[1];
@@ -38,6 +39,7 @@ public class DifficultyManager : MonoBehaviour
         AudioManager.Instance.PlaySound("interaction");
         PlayerPrefs.SetFloat("ThornDamage", 2f);
         PlayerPrefs.SetFloat("FrogDamage", 1f);
+        PlayerPrefs.SetFloat("HealPlayer", 0.5f);
         PlayerPrefs.Save();
 
         easyButton.sprite = easyButtonSprites[0];

@@ -5,19 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class TimeElapsedManager : MonoBehaviour
 {
+    public static TimeElapsedManager Instance;
+
     [SerializeField] TMP_Text timeElapsed;
     private int timeElapsedText;
-    private bool isGameRunning;
 
     private void Awake()
     {
-        timeElapsed.gameObject.SetActive(false);
+        if (Instance == null)
+        {
+            Instance = this;
+            timeElapsed.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
-        isGameRunning = true;
-
         if (SceneManager.GetActiveScene().buildIndex > 1)
         {
             timeElapsed.gameObject.SetActive(true);
@@ -28,7 +35,7 @@ public class TimeElapsedManager : MonoBehaviour
     private IEnumerator TimeRoutine()
     {
         yield return new WaitForSeconds(5.5f);
-        while(isGameRunning)
+        while (true)
         {
             yield return new WaitForSeconds(1);
             timeElapsedText += 1;
@@ -47,10 +54,6 @@ public class TimeElapsedManager : MonoBehaviour
         }
 
         return formatted;
-    }
-    public void SetIsGameRunning(bool value)
-    {
-        isGameRunning = value;
     }
 
     public int GetTimeElapsed()
