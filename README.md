@@ -7,7 +7,7 @@ O jogo foi desenvolvido pelos acadêmicos Bernardo Vivian Vieira (179835) e Yeun
 
 ### Informações do Jogo:
 
-O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhecimentos adquiridos na disciplina e algumas fontes externas, como tutoriais no YouTube, 'fórum' da Unity (Unity Discussion) e a própria documentação (além de algumas gambiarras de programação, mas se funciona, por que não? kkkkk!)
+O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhecimentos adquiridos na disciplina e algumas fontes externas, como tutoriais no YouTube, 'fórum' da Unity (Unity Discussions) e a própria documentação (além de algumas gambiarras de programação, mas se funciona, por que não? Haha!)
 
 1. Os assets que foram utilizados pro jogo podem ser encontrados em Asset Store da Unity:
 
@@ -24,4 +24,4 @@ O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhe
 
 Caso queira jogar o game, basta baixar o projeto em uma pasta ZIP, extrair e, na pasta Game Adventure Exe, rodar o executável do jogo! As futuras atualizações e alguns ajustes serão aos poucos incrementados e atualizados aqui :)
 
-Versão atual do game: v1.0.0 BETA
+Versão atual do game: v1.0.1 BETA
