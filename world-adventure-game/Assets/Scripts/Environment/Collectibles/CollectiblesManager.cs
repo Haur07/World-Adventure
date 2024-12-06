@@ -38,6 +38,7 @@ public class CollectiblesManager : MonoBehaviour
         totalScore = PlayerPrefs.GetInt("Score" + selectedPlayer, 0);
         toBeSavedScore = points - PlayerPrefs.GetInt("RemoveScore", 0);
 
+        // Debugging
         Debug.Log($"Selected Player: {selectedPlayer} | Score: {points} | To Be Saved Score (-time x3) {toBeSavedScore - time * 3} | Total Score: {totalScore} | Time Elapsed (x3): {time * 3}");
     }
 

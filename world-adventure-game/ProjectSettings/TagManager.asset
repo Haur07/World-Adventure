@@ -11,6 +11,9 @@ TagManager:
   - Cherry
   - Gem
   - Heart
+  - Stair
+  - StairBottom
+  - StairTop
   layers:
   - Default
   - TransparentFX

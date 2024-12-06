@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip victorySong;
     [SerializeField] private AudioClip level1Song;
     [SerializeField] private AudioClip level2Song;
+    [SerializeField] private AudioClip level3Song;
     [SerializeField] private AudioClip dieSound;
     [SerializeField] private AudioClip gameOverSong;
 
@@ -41,6 +42,7 @@ public class AudioManager : MonoBehaviour
                 { "victory", victorySong },
                 { "level1", level1Song },
                 { "level2", level2Song },
+                { "level3", level3Song },
                 { "dead", dieSound },
                 { "gameover", gameOverSong }
             };
@@ -53,7 +55,7 @@ public class AudioManager : MonoBehaviour
     public void StopSound()
     {
         StopAllCoroutines();
-        audioSource?.Stop(); // '?' só vai executar se for != null
+        audioSource?.Stop();
     }
 
     public void PlaySound(string soundName, bool loop = false)

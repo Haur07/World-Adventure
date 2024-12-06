@@ -66,7 +66,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        if (levelIndex > 3)
+        if (levelIndex > 4)
         {
             transition.SetTrigger("start");
             yield return new WaitForSeconds(2);
