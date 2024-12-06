@@ -39,7 +39,6 @@ public class CollectiblesManager : MonoBehaviour
         Debug.Log($"Selected Player: {selectedPlayer} | Cherry Points: {cherryPoints} | To Be Saved Score {toBeSavedScore} | Total Score: {totalScore}");
     }
 
-    // Método utilizado pelos botões Restart de Game Over e Pause
     public void ResetCurrentPoints()
     {
         int currentPoints = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);

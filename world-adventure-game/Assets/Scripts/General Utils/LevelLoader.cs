@@ -37,6 +37,7 @@ public class LevelLoader : MonoBehaviour
         {
             int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
             PlayerPrefs.SetInt("Score" + selectedPlayer, 0);
+            PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, 0);
             PlayerPrefs.Save();
         }
 
