@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
@@ -15,15 +16,16 @@ public class PlayerBehavior : MonoBehaviour
     private bool onStair;
     private bool canMove;
     private bool interacted;
-    private bool onGroundForced;
-
+    private bool forcedOnGround;
+    private bool hasJumped;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
         interacted = false;
-        onGroundForced = false;
+        forcedOnGround = false;
+        hasJumped = false;
 
         if (interaction != null)
         {
@@ -42,6 +44,7 @@ public class PlayerBehavior : MonoBehaviour
         body.freezeRotation = true;
     }
 
+    // TODO - Player ainda está mal otimizado, cheio de problemas de física e bugs. Futuramente deverá ser ajeitado.
     private void Update()
     {
         if (!canMove)
@@ -58,9 +61,9 @@ public class PlayerBehavior : MonoBehaviour
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
             body.gravityScale = 1;
 
-            if (Input.GetKey(KeyCode.Space) && onGround)
+            if (Input.GetKey(KeyCode.Space) && onGround && !hasJumped)
             {
-                Jump();
+                StartCoroutine(Jump());
             }
         }
         else
@@ -89,21 +92,28 @@ public class PlayerBehavior : MonoBehaviour
         animate.SetBool("climb-descending", verticalInput < -0.01f && onStair);
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
         AudioManager.Instance.PlaySound("jump");
+        hasJumped = true;
         body.velocity = new Vector2(body.velocity.x, speed);
         onGround = false;
         animate.SetTrigger("jump");
+        yield return new WaitForSeconds(0.3f);
+        hasJumped = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("onGround"))
         {
             onGround = true;
         }
+    }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("rightCollision"))
         {
             transform.position = new Vector2(-7.4f, transform.position.y);
@@ -155,11 +165,11 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ForceOnGround") && !onGroundForced)
+        if (collision.gameObject.CompareTag("ForceOnGround") && !forcedOnGround)
         {
             onGround = true;
             onStair = false;
-            onGroundForced = true;
+            forcedOnGround = true;
         }
 
         if (collision.gameObject.CompareTag("StairTop"))
@@ -204,9 +214,9 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ForceOnGround") && onGroundForced)
+        if (collision.gameObject.CompareTag("ForceOnGround") && forcedOnGround)
         {
-            onGroundForced = false;
+            forcedOnGround = false;
         }
 
         if (collision.gameObject.CompareTag("Stair"))

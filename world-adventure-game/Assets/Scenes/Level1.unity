@@ -7376,6 +7376,10 @@ PrefabInstance:
       propertyPath: collectiblesManager
       value: 
       objectReference: {fileID: 7388362969088137155}
+    - target: {fileID: 8882637635969786337, guid: cfd77168230c81447943b82686ee7482, type: 3}
+      propertyPath: m_Mass
+      value: 35980.82
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28980,6 +28984,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1600464355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1521365117364158496, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+  m_PrefabInstance: {fileID: 306096335848853166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1602727487
 GameObject:
   m_ObjectHideFlags: 0
@@ -29175,7 +29184,7 @@ Animator:
   m_GameObject: {fileID: 1605468252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 676e7860519a12c4db85ca5aa468cb2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6911e1e501fb9a54a957788be0d36715, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -29224,9 +29233,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1495368061
-  m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingLayerID: 931872779
+  m_SortingLayer: 8
+  m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: b4c507c9b3ff6e946a614b5a5b55ad8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -31615,6 +31624,10 @@ PrefabInstance:
     - target: {fileID: 4919111060859710328, guid: 04bee2695ac49d849a5c58e104147ff9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445405061675220312, guid: 04bee2695ac49d849a5c58e104147ff9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 6505465780082668481, guid: 04bee2695ac49d849a5c58e104147ff9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -37826,10 +37839,26 @@ PrefabInstance:
       propertyPath: victoryText
       value: 
       objectReference: {fileID: 834712355}
+    - target: {fileID: 1110823216355440541, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: invincibilityField
+      value: 
+      objectReference: {fileID: 1600464355}
+    - target: {fileID: 1521365117364158496, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: m_Name
+      value: InvincibilityField
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521365117364158496, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: m_TagString
+      value: InvincibilityField
+      objectReference: {fileID: 0}
     - target: {fileID: 1671541946026912983, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1558284807}
+    - target: {fileID: 1671541946026912983, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: m_SortingOrder
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 1790447262223930352, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -37921,6 +37950,14 @@ PrefabInstance:
     - target: {fileID: 6186003910075085875, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686506513673885666, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686506513673885666, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.63
       objectReference: {fileID: 0}
     - target: {fileID: 7424264714354208948, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: animate

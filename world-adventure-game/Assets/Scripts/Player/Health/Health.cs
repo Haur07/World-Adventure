@@ -128,6 +128,15 @@ public class Health : MonoBehaviour
         isInvincible = false;
     }
 
+    // Gambiarrrrrrrrra. Mais tarde penso em algo melhor :/
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("InvincibilityField"))
+        {
+            isInvincible = true;
+        }
+    }
+
     public IEnumerator AlwaysInvincible()
     {
         while (true)

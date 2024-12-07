@@ -15,6 +15,7 @@ TagManager:
   - StairBottom
   - StairTop
   - ForceOnGround
+  - InvincibilityField
   layers:
   - Default
   - TransparentFX

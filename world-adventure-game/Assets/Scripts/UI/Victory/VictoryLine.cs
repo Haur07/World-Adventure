@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class VictoryLine : MonoBehaviour
@@ -39,7 +39,6 @@ public class VictoryLine : MonoBehaviour
         if (collision.tag == "Player" && !victoryReached)
         {
             victoryReached = true;
-            StartCoroutine(Health.Instance.AlwaysInvincible());
             blockerIndicator.SetActive(true);
             TimeElapsedManager.Instance.StopAllCoroutines();
             AudioManager.Instance.StopSound();
@@ -47,6 +46,7 @@ public class VictoryLine : MonoBehaviour
             PlayerPrefs.SetInt("CurrentScoreNoTime" + selectedPlayer, currentScore);
             PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, currentScore - time * 3);
             StartCoroutine(ActivateDoorInteraction());
+            StartCoroutine(Health.Instance.AlwaysInvincible());
         }
     }
 
