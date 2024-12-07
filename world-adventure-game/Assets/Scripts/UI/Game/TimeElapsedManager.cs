@@ -8,7 +8,9 @@ public class TimeElapsedManager : MonoBehaviour
     public static TimeElapsedManager Instance;
 
     [SerializeField] TMP_Text timeElapsed;
+
     private int timeElapsedText;
+    private bool withinTimeLimit;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class TimeElapsedManager : MonoBehaviour
         {
             Instance = this;
             timeElapsed.gameObject.SetActive(false);
+            withinTimeLimit = true;
         }
         else
         {
@@ -35,11 +38,18 @@ public class TimeElapsedManager : MonoBehaviour
     private IEnumerator TimeRoutine()
     {
         yield return new WaitForSeconds(5.5f);
-        while (true)
+        while (withinTimeLimit)
         {
             yield return new WaitForSeconds(1);
             timeElapsedText += 1;
             timeElapsed.text = FormatText(timeElapsedText);
+
+            if (timeElapsedText >= 999)
+            {
+                withinTimeLimit = false;
+                Health.Instance.StopAllCoroutines();
+                Health.Instance.TimeExceededDeath();
+            }
         }
     }
 

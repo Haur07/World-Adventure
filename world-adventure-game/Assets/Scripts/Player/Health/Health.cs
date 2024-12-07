@@ -66,11 +66,11 @@ public class Health : MonoBehaviour
             {
                 if (damage < 1)
                 {
-                    CollectiblesManager.Instance.SetPoints(-6);
+                    CollectiblesManager.Instance.SetPoints(-3);
                 }
                 else
                 {
-                    CollectiblesManager.Instance.SetPoints((int)damage * 12 * -1);
+                    CollectiblesManager.Instance.SetPoints((int)damage * -6);
                 }
             }
 
@@ -107,6 +107,19 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void TimeExceededDeath()
+    {
+        currentHealth = 0;
+        TimeElapsedManager.Instance.StopAllCoroutines();
+        AudioManager.Instance.StopSound();
+        AudioManager.Instance.PlaySound("damage");
+        animate.SetTrigger("die");
+        player.SetCanMove(false);
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        dead = true;
+        StartCoroutine(GameOverScreen());
+    }
+
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -129,13 +142,13 @@ public class Health : MonoBehaviour
     }
 
     // Gambiarrrrrrrrra. Mais tarde penso em algo melhor :/
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("InvincibilityField"))
-        {
-            isInvincible = true;
-        }
-    }
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("InvincibilityField"))
+    //    {
+    //        isInvincible = true;
+    //    }
+    //}
 
     public IEnumerator AlwaysInvincible()
     {

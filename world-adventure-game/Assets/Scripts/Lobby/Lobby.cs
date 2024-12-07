@@ -16,7 +16,7 @@ public class Lobby : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlaySound("lobby");
+        AudioManager.Instance.PlaySound("lobby", loop: true);
 
         if (player != null)
         {

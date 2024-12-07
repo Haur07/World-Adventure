@@ -1,50 +1,56 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PostGameScreenManager : MonoBehaviour
 {
+    public static PostGameScreenManager Instance;
+
     [SerializeField] private TMP_Text timeValue;
     [SerializeField] private TMP_Text pointsValueNoTime;
-    [SerializeField] private TMP_Text minusPointsValue;
     [SerializeField] private TMP_Text pointsValue;
     [SerializeField] private Animator resultsAnimate;
     [SerializeField] private GameObject health;
-    private CollectiblesManager collectiblesManager;
-    private TimeElapsedManager timeElapsedManager;
+
     private Animator animate;
+
     private int selectedPlayer;
 
     private void Awake()
     {
-        selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
-        gameObject.SetActive(false);
-        collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
-        timeElapsedManager = FindAnyObjectByType<TimeElapsedManager>();
-        animate = GetComponent<Animator>();
+        if (Instance == null)
+        {
+            Instance = this;
+            selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
+            gameObject.SetActive(false);
+            animate = GetComponent<Animator>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ShowPostGameScreen()
     {
         SetTextsValue();
-        collectiblesManager.gameObject.SetActive(false);
-        timeElapsedManager.gameObject.SetActive(false);
+        CollectiblesManager.Instance.gameObject.SetActive(false);
+        TimeElapsedManager.Instance.gameObject.SetActive(false);
         health.SetActive(false);
         StartCoroutine(ShowResults());
     }
 
     private void SetTextsValue()
     {
-        int scoreNoTime = PlayerPrefs.GetInt("CurrentScoreNoTime" + selectedPlayer, 0);
-        int score = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
-        string formattedTime = FormatResult(timeElapsedManager.GetTimeElapsed());
+        int scoreNoTime = Mathf.Clamp(PlayerPrefs.GetInt("CurrentScoreNoTime" + selectedPlayer, 0), 0, 9999);
+        int score = Mathf.Clamp(PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0), 0, 9999);
+        string formattedTime = FormatResult(TimeElapsedManager.Instance.GetTimeElapsed());
         string formattedScoreNoTime = FormatResult(scoreNoTime);
-        string formattedMinusScore = FormatResult(timeElapsedManager.GetTimeElapsed() * 3);
         string formattedScore = FormatResult(score);
 
         timeValue.text = formattedTime;
         pointsValueNoTime.text = formattedScoreNoTime;
-        minusPointsValue.text = formattedMinusScore;
         pointsValue.text = formattedScore;
     }
 
@@ -67,6 +73,14 @@ public class PostGameScreenManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         resultsAnimate.SetTrigger("showResults");
         yield return new WaitForSeconds(5);
-        LevelLoader.Instance.StartGame();
+        if (!Health.Instance.GetIsGameOver())
+        {
+            LevelLoader.Instance.StartGame();
+
+        }
+        else
+        {
+            StartCoroutine(LevelLoader.Instance.LoadLevel(0));
+        }
     }
 }

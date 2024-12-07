@@ -7633,6 +7633,10 @@ PrefabInstance:
       propertyPath: levelSong
       value: 
       objectReference: {fileID: 8300000, guid: a544933a34b42884884b8892a7198aba, type: 3}
+    - target: {fileID: 6111630953016238543, guid: 5ab8b6ad7c7c6704eb5b793745c4e371, type: 3}
+      propertyPath: lobbySong
+      value: 
+      objectReference: {fileID: 8300000, guid: f3e68747878a91f43b569bdd189415b3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

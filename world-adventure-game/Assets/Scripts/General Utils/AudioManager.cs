@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
         while (true)
         {
             audioSource.PlayOneShot(clip);
-            yield return new WaitForSeconds(clip.length + 3f);
+            yield return new WaitForSecondsRealtime(clip.length + 3f);
         }
     }
 }

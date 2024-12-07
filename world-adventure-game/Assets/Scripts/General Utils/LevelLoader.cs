@@ -26,6 +26,7 @@ public class LevelLoader : MonoBehaviour
         {
             int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
             PlayerPrefs.SetInt("Score" + selectedPlayer, 0);
+            PlayerPrefs.Save();
         }
 
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
@@ -33,14 +34,22 @@ public class LevelLoader : MonoBehaviour
 
     public void RestartGame()
     {
+        int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
+
         if (Health.Instance.GetIsGameOver())
         {
-            int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
             PlayerPrefs.SetInt("Score" + selectedPlayer, 0);
             PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, 0);
-            PlayerPrefs.Save();
+        }
+        else
+        {
+            int currentScore = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer);
+            int removeScore = CollectiblesManager.Instance.GetToBeSavedScore();
+
+            PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, currentScore - removeScore);
         }
 
+        PlayerPrefs.Save();
         AudioManager.Instance.PlaySound("interaction");
         UIManager.Instance.setPausedScreen(false);
         FreezePlayer.Instance.Freeze();
@@ -51,20 +60,28 @@ public class LevelLoader : MonoBehaviour
 
     public void MainMenu()
     {
-        if (Health.Instance.GetIsGameOver())
+        AudioManager.Instance.PlaySound("interaction");
+
+        if (Health.Instance.GetIsGameOver() && SceneManager.GetActiveScene().buildIndex > 1)
         {
             int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
-            CollectiblesManager.Instance?.SaveTotalScore();
+            int currentScore = PlayerPrefs.GetInt("CurrentScore" + selectedPlayer, 0);
+            int time = TimeElapsedManager.Instance.GetTimeElapsed();
+            PlayerPrefs.SetInt("CurrentScoreNoTime" + selectedPlayer, currentScore);
+            PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, currentScore - time);
+            CollectiblesManager.Instance.SaveTotalScore();
+            PostGameScreenManager.Instance.gameObject.SetActive(true);
+            PostGameScreenManager.Instance.ShowPostGameScreen();
+            return;
         }
 
-        AudioManager.Instance.PlaySound("interaction");
         FreezePlayer.Instance.Freeze();
         StartCoroutine(LoadLevel(0));   
         StartCoroutine(Health.Instance.AlwaysInvincible());
         Time.timeScale = 1;
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    public IEnumerator LoadLevel(int levelIndex)
     {
         if (levelIndex > 4)
         {

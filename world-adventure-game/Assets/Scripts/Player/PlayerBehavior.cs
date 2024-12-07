@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     private Animator animate;
 
     private float speed;
+    private float jumpSpeed;
     private bool onGround;
     private bool onStair;
     private bool canMove;
@@ -40,6 +41,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         speed = 5f;
+        jumpSpeed = 5f;
         body.gravityScale = 1f;
         body.freezeRotation = true;
     }
@@ -96,24 +98,29 @@ public class PlayerBehavior : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("jump");
         hasJumped = true;
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         onGround = false;
         animate.SetTrigger("jump");
         yield return new WaitForSeconds(0.3f);
         hasJumped = false;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("onGround"))
+    //    {
+    //        onGround = true;
+    //    }
+    //}
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("onGround"))
         {
             onGround = true;
         }
-    }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
         if (collision.gameObject.CompareTag("rightCollision"))
         {
             transform.position = new Vector2(-7.4f, transform.position.y);
@@ -121,19 +128,6 @@ public class PlayerBehavior : MonoBehaviour
         else if (collision.gameObject.CompareTag("leftCollision"))
         {
             transform.position = new Vector2(7.4f, transform.position.y);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("onGround"))
-        {
-            onGround = false;
-
-            if (!onStair)
-            {
-                animate.SetTrigger("jump");
-            }
         }
     }
 
@@ -148,6 +142,34 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        // Teste
+        if (collision.gameObject.CompareTag("SpeedAdjuster"))
+        {
+            if (Input.GetAxis("Horizontal") > 0.01f)
+            {
+                speed = 2.5f;
+                jumpSpeed = 7;
+            }
+            else
+            {
+                speed = 5;
+                jumpSpeed = 5;
+            }
+        }
+        else if (collision.gameObject.CompareTag("SpeedAdjusterLow"))
+        {
+            if (Input.GetAxis("Horizontal") > 0.01f)
+            {
+                speed = 3.5f;
+                jumpSpeed = 5.8f;
+            }
+            else
+            {
+                speed = 5;
+                jumpSpeed = 5;
+            }
+        }
+
         if (collision.gameObject.CompareTag("Stair") && !interacted)
         {
             interaction.SetActive(true);
@@ -188,13 +210,13 @@ public class PlayerBehavior : MonoBehaviour
         {
             AudioManager.Instance.PlaySound("collect");
             Destroy(collision.gameObject);
-            collectiblesManager.SetPoints(20);
+            collectiblesManager.SetPoints(10);
         }
         else if (collision.gameObject.CompareTag("Gem"))
         {
             AudioManager.Instance.PlaySound("collect");
             Destroy(collision.gameObject);
-            collectiblesManager.SetPoints(300);
+            collectiblesManager.SetPoints(180);
         }
         else if (collision.gameObject.CompareTag("Heart"))
         {
@@ -207,13 +229,20 @@ public class PlayerBehavior : MonoBehaviour
             }
             else
             {
-                collectiblesManager.SetPoints(80);
+                collectiblesManager.SetPoints(60);
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // Teste
+        if (collision.gameObject.CompareTag("SpeedAdjuster") || collision.gameObject.CompareTag("SpeedAdjusterLow"))
+        {
+            speed = 5;
+            jumpSpeed = 5;
+        }
+
         if (collision.gameObject.CompareTag("ForceOnGround") && forcedOnGround)
         {
             forcedOnGround = false;

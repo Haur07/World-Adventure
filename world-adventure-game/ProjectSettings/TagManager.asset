@@ -15,7 +15,8 @@ TagManager:
   - StairBottom
   - StairTop
   - ForceOnGround
-  - InvincibilityField
+  - SpeedAdjuster
+  - SpeedAdjusterLow
   layers:
   - Default
   - TransparentFX

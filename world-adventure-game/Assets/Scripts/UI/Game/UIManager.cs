@@ -53,10 +53,13 @@ public class UIManager : MonoBehaviour
 
     public void Pause()
     {
-        AudioManager.Instance.PlaySound("interaction");
-        isPaused = true;
-        pausedScreen.SetActive(true);
-        Time.timeScale = 0;
+        if (!Health.Instance.GetIsGameOver())
+        {
+            AudioManager.Instance.PlaySound("interaction");
+            isPaused = true;
+            pausedScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     public void Unpause()

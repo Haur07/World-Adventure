@@ -2277,7 +2277,7 @@ PrefabInstance:
     - target: {fileID: 1110823216355440541, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: invincibilityField
       value: 
-      objectReference: {fileID: 72062707}
+      objectReference: {fileID: 0}
     - target: {fileID: 1521365117364158496, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
       propertyPath: m_Name
       value: InvincibilityField
@@ -2427,11 +2427,6 @@ RectTransform:
 --- !u!95 &72062706 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 176691270695235928, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
-  m_PrefabInstance: {fileID: 72062704}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &72062707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1521365117364158496, guid: 2fa39de19f4b57b4285189fc85cbaf22, type: 3}
   m_PrefabInstance: {fileID: 72062704}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &75611778
@@ -15094,7 +15089,7 @@ Transform:
   m_GameObject: {fileID: 545764572}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.3, y: -13.93, z: 0.0015099138}
+  m_LocalPosition: {x: 33.3, y: -40.7, z: 0.0015099138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15144,7 +15139,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.2547321, y: -3.941495}
+  m_Offset: {x: 0.15238953, y: -9.658377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -15155,7 +15150,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 119.189575, y: 8.88299}
+  m_Size: {x: 226.90765, y: 20.316753}
   m_EdgeRadius: 0
 --- !u!212 &545764576
 SpriteRenderer:

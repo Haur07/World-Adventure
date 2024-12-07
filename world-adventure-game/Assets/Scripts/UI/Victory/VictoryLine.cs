@@ -44,7 +44,7 @@ public class VictoryLine : MonoBehaviour
             AudioManager.Instance.StopSound();
             AudioManager.Instance.PlaySound("victory", loop: true);
             PlayerPrefs.SetInt("CurrentScoreNoTime" + selectedPlayer, currentScore);
-            PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, currentScore - time * 3);
+            PlayerPrefs.SetInt("CurrentScore" + selectedPlayer, currentScore - time);
             StartCoroutine(ActivateDoorInteraction());
             StartCoroutine(Health.Instance.AlwaysInvincible());
         }

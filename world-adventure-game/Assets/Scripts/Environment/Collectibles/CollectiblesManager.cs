@@ -39,7 +39,12 @@ public class CollectiblesManager : MonoBehaviour
         toBeSavedScore = points - PlayerPrefs.GetInt("RemoveScore", 0);
 
         // Debugging
-        Debug.Log($"Selected Player: {selectedPlayer} | Invincibility: {Health.Instance.GetIsInvincible()} | Score: {points} | To Be Saved Score (-time x3) {toBeSavedScore - time * 3} | Total Score: {totalScore} | Time Elapsed (x3): {time * 3}");
+        Debug.Log($"Selected Player: {selectedPlayer} | Invincibility: {Health.Instance.GetIsInvincible()} | Score: {points} | To Be Saved Score (-time) {toBeSavedScore - time} | Total Score: {totalScore} | Time Elapsed: {time}");
+    }
+
+    public int GetToBeSavedScore()
+    {
+        return toBeSavedScore;
     }
 
     public void ResetCurrentPoints()
@@ -84,7 +89,7 @@ public class CollectiblesManager : MonoBehaviour
 
     public void SaveTotalScore()
     {
-        PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Clamp(totalScore + (toBeSavedScore - time * 3), 0, 9999));
+        PlayerPrefs.SetInt("Score" + selectedPlayer, Mathf.Clamp(totalScore + (toBeSavedScore - time), 0, 9999));
         PlayerPrefs.Save();
     }
 }
