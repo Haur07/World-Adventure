@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 39252
+  controlID: 39565
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 39204
+  controlID: 39517
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 39195
+  controlID: 39508
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -242,7 +242,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9690fbffb6effbff7a52fcffca54fcff6455fcffc658fcff7a59fcff0473fcff1473fcff2673fcffca73fcff0e74fcffec8dfcfff48ffcff5e92fcffb496fcff1897fcff1299fcff009afcff4e6cfdff706cfdff146dfdff766dfdffd4b1fdffe8d6fdff1cd9fdff26d9fdff5ad9fdff7ed9fdff08fcfdff98fefdff7a03feff4408feff9040feff3486feff16fbffff407300006c730000e4750000ca7b0000167c0000e0b80300bebe030002ce03002ed40300fe8604004cf304008a070500702f0500bc470500f64e0500
+      m_ExpandedIDs: 7217fbff9690fbffb6effbff7a52fcffca54fcff6455fcffc658fcff7a59fcff0473fcff1473fcff2673fcffca73fcff0e74fcffec8dfcfff48ffcff5e92fcffb496fcff1897fcff1299fcff009afcff4e6cfdff706cfdff146dfdff766dfdffd4b1fdffe8d6fdff1cd9fdff26d9fdff5ad9fdff7ed9fdff08fcfdff98fefdff7a03feff4408feff9040feff3486feff16fbffff407300006c730000e4750000ca7b0000167c0000e0b80300bebe030002ce03002ed40300fe8604004cf304008a070500702f0500bc470500f64e0500c4bd0600
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -709,9 +709,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 484.91324, y: 324.20212, z: -3.77983}
+    m_Target: {x: 538.1151, y: 345.04742, z: -3.523803}
     speed: 2
-    m_Value: {x: 484.91324, y: 324.20212, z: -3.77983}
+    m_Value: {x: 538.1151, y: 345.04742, z: -3.523803}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 411.17746
+    m_Target: 385.57568
     speed: 2
-    m_Value: 411.17746
+    m_Value: 385.57568
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -896,7 +896,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Sprites/Main Menu/Main Screen
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -904,16 +904,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Sprites/Main Menu/Main Screen
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Haur\Documents\GitHub\World-Adventure\world-adventure-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 12}
-    m_SelectedIDs: e0830000
-    m_LastClickedID: 33760
-    m_ExpandedIDs: 00000000b4830000b6830000b8830000ba830000bc830000be830000c0830000c2830000c483000000ca9a3b
+    scrollPos: {x: 0, y: 25}
+    m_SelectedIDs: febc0400
+    m_LastClickedID: 310526
+    m_ExpandedIDs: 00000000b4830000b6830000b8830000ba830000bc830000be830000c0830000c2830000c4830000e483000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -966,9 +966,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f2830000
-    m_LastClickedInstanceID: 33778
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300007609010016730000b4c10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1565,8 +1565,8 @@ MonoBehaviour:
     y: 0
     width: 417
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -1612,7 +1612,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 33778
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
