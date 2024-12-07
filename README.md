@@ -19,6 +19,7 @@ O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhe
    - Lobby: https://youtu.be/v-JormdZd0s?si=8ZgTFqyNXghEJ14k (Sound! [8bit])
    - Nível 1: https://youtu.be/pbmHmdG08lg?si=0TR-E_lP2vO4QidC (Cagayake! GIRLS [8bit])
    - Nível 2: https://youtu.be/A_kaHwtVXd4?si=3Fe3ARyLmVAxbuz2 (Don't say "lazy" [8bit])
+   - Nível 3: https://youtu.be/xT_vncEIUUI?si=1lLkxAZRuwB_Zhf3 (NO,Thank You! [8bit])
 
 ### Execução do Jogo
 
