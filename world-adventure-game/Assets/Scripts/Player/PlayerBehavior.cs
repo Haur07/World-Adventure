@@ -15,6 +15,7 @@ public class PlayerBehavior : MonoBehaviour
     private bool onStair;
     private bool canMove;
     private bool interacted;
+    private bool onGroundForced;
 
 
     private void Awake()
@@ -22,6 +23,7 @@ public class PlayerBehavior : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
         interacted = false;
+        onGroundForced = false;
 
         if (interaction != null)
         {
@@ -153,6 +155,13 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("ForceOnGround") && !onGroundForced)
+        {
+            onGround = true;
+            onStair = false;
+            onGroundForced = true;
+        }
+
         if (collision.gameObject.CompareTag("StairTop"))
         {
             blockage.SetActive(true);
@@ -195,6 +204,11 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("ForceOnGround") && onGroundForced)
+        {
+            onGroundForced = false;
+        }
+
         if (collision.gameObject.CompareTag("Stair"))
         {
             interacted = false;
