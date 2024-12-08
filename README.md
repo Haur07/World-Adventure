@@ -7,6 +7,8 @@ O jogo foi desenvolvido pelos acadêmicos Bernardo Vivian Vieira (179835) e Yeun
 
 ### Informações do Jogo:
 
+**A continuação do jogo pós-disciplina e futuras atualizações estão sendo mantidas por "Haur07"!**
+
 O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhecimentos adquiridos na disciplina e algumas fontes externas, como tutoriais no YouTube, "fórum" da Unity (Unity Discussions) e a própria documentação (além de algumas gambiarras de programação, mas se funciona, por que não? Haha!)
 
 1. Os assets que foram utilizados pro jogo podem ser encontrados em Asset Store da Unity:
