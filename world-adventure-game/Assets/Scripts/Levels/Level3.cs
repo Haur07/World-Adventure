@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class Level3 : MonoBehaviour
 {
-    [SerializeField] private PlayerBehavior player;
+    private PlayerMovement player;
+
+    private void Awake()
+    {
+        player = FindFirstObjectByType<PlayerMovement>();
+    }
 
     private void Start()
     {

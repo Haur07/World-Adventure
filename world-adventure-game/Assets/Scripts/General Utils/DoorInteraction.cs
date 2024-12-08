@@ -8,13 +8,13 @@ public class DoorInteraction : MonoBehaviour
     public GameObject textSprite;
     private bool isNearDoor = false;
     private bool doorInteracted = false;
-    private PlayerBehavior player;
+    private PlayerMovement player;
     private CollectiblesManager collectiblesManager;
     private int selectedPlayer;
 
     private void Awake()
     {
-        player = FindAnyObjectByType<PlayerBehavior>();
+        player = FindAnyObjectByType<PlayerMovement>();
         collectiblesManager = FindAnyObjectByType<CollectiblesManager>();
     }
 
@@ -25,7 +25,7 @@ public class DoorInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (isNearDoor && Input.GetKeyDown(KeyCode.W) && !doorInteracted)
+        if (isNearDoor && Input.GetKeyDown(KeyCode.E) && !doorInteracted)
         {
             if (player != null)
             {

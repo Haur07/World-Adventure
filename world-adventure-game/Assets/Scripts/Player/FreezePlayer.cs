@@ -5,7 +5,7 @@ public class FreezePlayer : MonoBehaviour
 {
     public static FreezePlayer Instance;
 
-    [SerializeField] PlayerBehavior player;
+    [SerializeField] PlayerMovement player;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class FreezePlayer : MonoBehaviour
         StartCoroutine(DisableMovement(player, 5.5f));
     }
 
-    public IEnumerator DisableMovement(PlayerBehavior player, float duration)
+    public IEnumerator DisableMovement(PlayerMovement player, float duration)
     {
         player.SetCanMove(false);
         yield return new WaitForSeconds(duration);

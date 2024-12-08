@@ -14,9 +14,9 @@ TagManager:
   - Stair
   - StairBottom
   - StairTop
-  - ForceOnGround
   - SpeedAdjuster
   - SpeedAdjusterLow
+  - WallJump
   layers:
   - Default
   - TransparentFX

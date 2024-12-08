@@ -9,7 +9,6 @@ public class VictoryLine : MonoBehaviour
     [SerializeField] private GameObject blockerIndicator;
 
     [Header("Game Objects Reference")]
-    [SerializeField] private PlayerBehavior player;
     [SerializeField] private CollectiblesManager collectiblesManager;
 
     private bool victoryReached;

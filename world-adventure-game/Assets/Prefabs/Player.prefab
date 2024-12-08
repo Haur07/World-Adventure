@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2993702952034661743}
   - component: {fileID: 2939611610718126482}
-  - component: {fileID: 2102174050048526830}
+  - component: {fileID: 7225013769430474692}
+  - component: {fileID: 532754519818157314}
   - component: {fileID: 7487120075478949761}
   - component: {fileID: 8882637635969786337}
   - component: {fileID: 6759928918002947195}
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2102174050048526830
+--- !u!114 &7225013769430474692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,12 +101,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1337616374606240519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28654621b4d6c2f4daf8a59eb084dbbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fe0a27f7efd0d64ca99e335a81f787d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectiblesManager: {fileID: 0}
-  interaction: {fileID: 0}
-  blockage: {fileID: 0}
+  jumpChargeSprites:
+  - {fileID: 21300000, guid: 1d5614d6647022a45b57c22c5b4c18cf, type: 3}
+  - {fileID: 21300000, guid: 1e75c4cff351dba468fa40b9f026ef06, type: 3}
+  - {fileID: 21300000, guid: e700ed611523b3444afa8f65a4fd1967, type: 3}
+  - {fileID: 21300000, guid: 3e4419457c877d34bb1d12f29daab064, type: 3}
+  jumpCharge: {fileID: 0}
+--- !u!114 &532754519818157314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337616374606240519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1456e0b81522d44a058ab6b0ed4520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7487120075478949761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5187fb42e42e6b249826b8507acdfa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!50 &8882637635969786337
 Rigidbody2D:
   serializedVersion: 4
@@ -131,7 +146,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 35980.82
   m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 5
@@ -342,4 +357,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f6449a180319e43823e23991d58b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2102174050048526830}
+  player: {fileID: 7225013769430474692}

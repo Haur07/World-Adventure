@@ -1,12 +1,13 @@
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Lobby : MonoBehaviour
 {
-    [SerializeField] private PlayerBehavior player;
+    private PlayerMovement player;
 
     private void Awake()
     {
+        player = FindFirstObjectByType<PlayerMovement>();
+
         for (int index = 1; index < 4; index++)
         {
             PlayerPrefs.SetInt("CurrentScore" + index, 0);

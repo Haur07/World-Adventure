@@ -6,13 +6,13 @@ public class Health : MonoBehaviour
 {
     public static Health Instance;
 
-    [SerializeField] private PlayerBehavior player;
+    private PlayerMovement player;
 
     private Animator animate;
     private SpriteRenderer sprite;
 
-    private bool isGameOver;
     private int selectedPlayer;
+    private bool isGameOver;
     private bool isInvincible;
     private bool dead;
     private float health;
@@ -25,19 +25,32 @@ public class Health : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            isGameOver = false;
+            player = FindFirstObjectByType<PlayerMovement>();
+
+            animate = GetComponent<Animator>();
+            sprite = GetComponent<SpriteRenderer>();
+
             selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer");
+            isGameOver = false;
             isInvincible = false;
+            dead = false;
             health = 3;
             currentHealth = health;
             framesDuration = 2;
             flashesNumber = 8;
-            animate = GetComponent<Animator>();
-            sprite = GetComponent<SpriteRenderer>();
+            
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (player == null)
+        {
+            Debug.LogWarning("Player object not found or it's null.");
         }
     }
 
@@ -86,7 +99,8 @@ public class Health : MonoBehaviour
                 TimeElapsedManager.Instance.StopAllCoroutines();
                 AudioManager.Instance.StopSound();
                 AudioManager.Instance.PlaySound("damage");
-                animate.SetTrigger("die");
+                animate.SetBool("die", true);
+                animate.SetTrigger("death");
                 player.SetCanMove(false);
                 dead = true;
                 StartCoroutine(GameOverScreen()); // Teste. Futuramente irá estar em outro script
@@ -113,7 +127,8 @@ public class Health : MonoBehaviour
         TimeElapsedManager.Instance.StopAllCoroutines();
         AudioManager.Instance.StopSound();
         AudioManager.Instance.PlaySound("damage");
-        animate.SetTrigger("die");
+        animate.SetBool("die", true);
+        animate.SetTrigger("death");
         player.SetCanMove(false);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         dead = true;
@@ -140,15 +155,6 @@ public class Health : MonoBehaviour
 
         isInvincible = false;
     }
-
-    // Gambiarrrrrrrrra. Mais tarde penso em algo melhor :/
-    //private void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("InvincibilityField"))
-    //    {
-    //        isInvincible = true;
-    //    }
-    //}
 
     public IEnumerator AlwaysInvincible()
     {

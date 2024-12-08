@@ -5,14 +5,14 @@ public class VictoryLineIndicator : MonoBehaviour
     [SerializeField] GameObject victoryText;
 
     private bool victoryReached;
-    private PlayerBehavior player;
+    private PlayerMovement player;
     private Animator animate;
 
     private void Awake()
     {
         victoryText.SetActive(false);
         victoryReached = false;
-        player = FindAnyObjectByType<PlayerBehavior>();
+        player = FindAnyObjectByType<PlayerMovement>();
         animate = GetComponent<Animator>();
     }
 

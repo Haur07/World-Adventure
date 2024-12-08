@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private PlayerBehavior player;
+    private PlayerMovement player;
     [SerializeField] private Transform playerPos;
 
     private void Awake()
     {
-        player = FindAnyObjectByType<PlayerBehavior>();
+        player = FindAnyObjectByType<PlayerMovement>();
     }
 
     private void Update()
