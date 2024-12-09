@@ -39,7 +39,7 @@ public class CollectiblesManager : MonoBehaviour
         toBeSavedScore = points - PlayerPrefs.GetInt("RemoveScore", 0);
 
         // Debugging
-        Debug.Log($"Selected Player: {selectedPlayer} | Invincibility: {Health.Instance.GetIsInvincible()} | Score: {points} | To Be Saved Score (-time) {toBeSavedScore - time} | Total Score: {totalScore} | Time Elapsed: {time}");
+        Debug.Log($"Selected Player: {selectedPlayer} | Pause Disabled: {UIManager.Instance.getPauseDisabled()} | Score: {points} | To Be Saved Score (-time) {toBeSavedScore - time} | Total Score: {totalScore} | Time Elapsed: {time}");
     }
 
     public int GetToBeSavedScore()

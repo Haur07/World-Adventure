@@ -10,31 +10,31 @@ public class Thorn : MonoBehaviour
         damage = PlayerPrefs.GetFloat("ThornDamage", 1f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(ApplyDamageOverTime());
+            Health.Instance.TakeDamage(damage);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            StopAllCoroutines();
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        StopAllCoroutines();
+    //    }
+    //}
 
-    private IEnumerator ApplyDamageOverTime()
-    {
-        while (true)
-        {
-            if (!Health.Instance.GetIsInvincible())
-            {
-                Health.Instance.TakeDamage(damage);
-            }
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
+    //private IEnumerator ApplyDamageOverTime()
+    //{
+    //    while (true)
+    //    {
+    //        if (!Health.Instance.GetIsInvincible())
+    //        {
+    //            Health.Instance.TakeDamage(damage);
+    //        }
+    //        yield return new WaitForSeconds(0.1f);
+    //    }
+    //}
 }

@@ -110,6 +110,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e700ed611523b3444afa8f65a4fd1967, type: 3}
   - {fileID: 21300000, guid: 3e4419457c877d34bb1d12f29daab064, type: 3}
   jumpCharge: {fileID: 0}
+  noFriction: {fileID: 6200000, guid: 2ad784fc033029241bc8f7f5ff5e9a78, type: 2}
+  friction: {fileID: 6200000, guid: 56dba9433f84fd54699e9eeedc65c6f3, type: 2}
 --- !u!114 &532754519818157314
 MonoBehaviour:
   m_ObjectHideFlags: 0

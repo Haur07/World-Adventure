@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip collectSound;
+    [SerializeField] private AudioClip healingSound;
     [SerializeField] private AudioClip menuSong;
     [SerializeField] private AudioClip lobbySong;
     [SerializeField] private AudioClip victorySong;
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour
                 { "jump", jumpSound },
                 { "damage", damageSound },
                 { "collect", collectSound },
+                { "heal", healingSound },
                 { "menu", menuSong },
                 { "lobby", lobbySong },
                 { "victory", victorySong },

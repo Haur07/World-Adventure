@@ -17,6 +17,7 @@ TagManager:
   - SpeedAdjuster
   - SpeedAdjusterLow
   - WallJump
+  - DisablePause
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private StairsInteraction stairInteraction;
 
     private Rigidbody2D body;
+    private Collider2D playerCollider;
     private Animator animate;
 
     private float speed;
@@ -43,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
     }
 
     private void HandleMovement()
@@ -177,6 +186,11 @@ public class PlayerMovement : MonoBehaviour
                 stairInteraction.blockage.SetActive(false);
             }
         }
+
+        if (collision.gameObject.CompareTag("DisablePause"))
+        {
+            UIManager.Instance.setPauseDisabled(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -226,6 +240,11 @@ public class PlayerMovement : MonoBehaviour
                     animate.SetTrigger("climb-exit");
                 }
             }
+        }
+
+        if (collision.gameObject.CompareTag("DisablePause"))
+        {
+            UIManager.Instance.setPauseDisabled(false);
         }
     }
 }

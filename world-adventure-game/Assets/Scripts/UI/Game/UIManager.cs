@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
 
     private bool isPaused;
+    private bool pauseDisabled;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
             isPaused = false;
+            pauseDisabled = false;
             pausedScreen.SetActive(false);
             gameOverScreen.SetActive(false);
         }
@@ -51,9 +53,19 @@ public class UIManager : MonoBehaviour
         pausedScreen.SetActive(value);
     }
 
+    public bool getPauseDisabled()
+    {
+        return pauseDisabled;
+    }
+
+    public void setPauseDisabled(bool value)
+    {
+        pauseDisabled = value;
+    }
+
     public void Pause()
     {
-        if (!Health.Instance.GetIsGameOver())
+        if (!Health.Instance.GetIsGameOver() && !pauseDisabled)
         {
             AudioManager.Instance.PlaySound("interaction");
             isPaused = true;

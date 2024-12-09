@@ -18,15 +18,16 @@ public class PlayerCollectiblesInteraction : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Heart"))
         {
-            AudioManager.Instance.PlaySound("collect");
             Destroy(collision.gameObject);
 
             if (Health.Instance.GetCurrentHealth() != 3)
             {
+                AudioManager.Instance.PlaySound("heal");
                 Health.Instance.HealPlayer(PlayerPrefs.GetFloat("HealPlayer", 1));
             }
             else
             {
+                AudioManager.Instance.PlaySound("collect");
                 CollectiblesManager.Instance.SetPoints(60);
             }
         }

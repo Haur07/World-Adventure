@@ -71,6 +71,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isInvincible)
+        {
+            return;
+        }
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, health);
         
         if (currentHealth > 0)
