@@ -50,8 +50,7 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 7997e236fb746644fad32dda7156e7ec, type: 3}
   collectSound: {fileID: 8300000, guid: 155af7ecefb959a42b09946a34e30323, type: 3}
   healingSound: {fileID: 8300000, guid: d54b7eef68630eb4981fe19f8c63a59c, type: 3}
-  menuSong: {fileID: 8300000, guid: 5ed0217c0530e544ebb075ea57c13e92, type: 3}
-  menuSongLoop: {fileID: 8300000, guid: 243ef3158f987554caa3d5964a0b5671, type: 3}
+  menuSong: {fileID: 8300000, guid: 73a4a3146be09c44a99207e519c000f5, type: 3}
   lobbySong: {fileID: 8300000, guid: f3e68747878a91f43b569bdd189415b3, type: 3}
   victorySong: {fileID: 8300000, guid: cae411abb4b155f4bb6affee35e8a879, type: 3}
   level1Song: {fileID: 8300000, guid: a544933a34b42884884b8892a7198aba, type: 3}

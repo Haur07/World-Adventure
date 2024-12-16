@@ -16,10 +16,10 @@ O jogo foi desenvolvido utilizando o motor gráfico da Unity, com base nos conhe
    - Sprites do personagem, inimigos e cenários: https://assetstore.unity.com/packages/2d/characters/sunny-land-103349?srsltid=AfmBOopbcQyALnSkswqw3kZEV-ku4-Z5pbxCiiKmDXsh-BZCrfvn_ER2#description
    - Textos, números (fonte em geral): feita utilizando software de arte digital Pixel Studio, importando imagem PNG na Unity e utilizada como sprite
 
-2. Músicas originais:
-   - Menu Principal: música feita utilizando FL Studio 21 com plugin Magical 8 Bit Plug [será disponibilizado futuramente] (Adventurer's Determination [8bit])
+2. As músicas originais podem ser encontradas no diretório "original-soundtracks":
+   - Menu Principal: música feita utilizando FL Studio 21 com plugin Magical 8 Bit Plug (Adventurer's Determination [8bit])
   
-3. Os efeitos sonoros e as músicas utilizadas foram pegos do YouTube, convertidos para MP3 e importados para a Unity. Todos os créditos aos respectivos autores:
+3. Os efeitos sonoros e algumas músicas utilizadas foram pegos do YouTube, convertidos para MP3 e importados para a Unity. Todos os créditos aos respectivos autores:
 
    - Lobby: https://youtu.be/v-JormdZd0s?si=8ZgTFqyNXghEJ14k (ReCoda [8bit])
    - Nível 1: https://youtu.be/pbmHmdG08lg?si=0TR-E_lP2vO4QidC (Cagayake! GIRLS [8bit])
